@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		154D216C251CF3D700062091 /* MusicButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154D216B251CF3D700062091 /* MusicButtonView.swift */; };
 		15ACF8F0251A393900FCF7CA /* ChangesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ACF8EF251A393900FCF7CA /* ChangesView.swift */; };
 		15ACF8F4251A3AEB00FCF7CA /* AppChangesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ACF8F3251A3AEB00FCF7CA /* AppChangesViewController.swift */; };
 		15ACF8F7251A3B7B00FCF7CA /* AppDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ACF8F6251A3B7B00FCF7CA /* AppDescriptionViewController.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		154D216B251CF3D700062091 /* MusicButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicButtonView.swift; sourceTree = "<group>"; };
 		15ACF8EF251A393900FCF7CA /* ChangesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangesView.swift; sourceTree = "<group>"; };
 		15ACF8F3251A3AEB00FCF7CA /* AppChangesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppChangesViewController.swift; sourceTree = "<group>"; };
 		15ACF8F6251A3B7B00FCF7CA /* AppDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDescriptionViewController.swift; sourceTree = "<group>"; };
@@ -332,6 +334,7 @@
 			children = (
 				F8114FBD22A3DBF400102830 /* SearchView.swift */,
 				F8A97B342249898E00FB2C0E /* AppCell.swift */,
+				154D216B251CF3D700062091 /* MusicButtonView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -467,6 +470,7 @@
 			files = (
 				E0E1D399203AE62E0011E01A /* ITunesApp.swift in Sources */,
 				F8A97B352249898E00FB2C0E /* AppCell.swift in Sources */,
+				154D216C251CF3D700062091 /* MusicButtonView.swift in Sources */,
 				BA70B7712519269F008B904E /* SearchPresenter.swift in Sources */,
 				F8114FC522A3E77500102830 /* AppDetailView.swift in Sources */,
 				E0E1D387203AE45F0011E01A /* WebRequest.swift in Sources */,

@@ -21,33 +21,33 @@ class AppDescriptionView: UIView {
     private(set) lazy var appMoreDescriptionButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Еще", for: .normal)
+        button.setTitle("Больше", for: .normal)
         button.addTarget(self, action: #selector(self.moreButtonClicked(sender:)), for: .touchUpInside)
         button.contentHorizontalAlignment = .right
         return button
     }()
     
-    @objc func moreButtonClicked(sender: UIButton) {
+    @objc func moreButtonClicked(sender: UIButton){
         if self.appDescriptionLabel.numberOfLines == 5 {
             self.appDescriptionLabel.numberOfLines = .max
-            self.appMoreDescriptionButton.setTitle("Меньше", for: .normal)
+            self.appMoreDescriptionButton.setTitle("Больше", for: .normal)
         } else {
             self.appDescriptionLabel.numberOfLines = 5
-            self.appMoreDescriptionButton.setTitle("Еще", for: .normal)
+            self.appMoreDescriptionButton.setTitle("Меньше", for: .normal)
         }
     }
 
-    override init(frame: CGRect) {
+    override init(frame: CGRect){
         super.init(frame: frame)
         self.setupLayout()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder){
         super.init(coder: aDecoder)
         self.setupLayout()
     }
     
-    private func setupLayout() {
+    private func setupLayout(){
         self.addSubview(self.appDescriptionLabel)
         self.addSubview(self.appMoreDescriptionButton)
         
