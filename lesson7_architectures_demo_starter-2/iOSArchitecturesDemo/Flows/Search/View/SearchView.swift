@@ -84,8 +84,8 @@ final class SearchView: UIView {
         
         NSLayoutConstraint.activate([
             self.segmentedControl.topAnchor.constraint(equalTo: self.topAnchor, constant: 8.0),
-            self.segmentedControl.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            self.segmentedControl.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            self.segmentedControl.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 10),
+            self.segmentedControl.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -10),
             
             self.searchBar.topAnchor.constraint(equalTo: self.segmentedControl.bottomAnchor, constant: 8.0),
             self.searchBar.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
