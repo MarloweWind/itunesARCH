@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class AppDetailViewController: UIViewController {
+final class AppDetailViewController: UIViewController{
     
     public var app: ITunesApp
     
@@ -17,17 +17,17 @@ final class AppDetailViewController: UIViewController {
     lazy var changesViewController = AppChangesViewController(app: app)
     
     
-    init(app: ITunesApp) {
+    init(app: ITunesApp){
         self.app = app
         super.init(nibName: nil, bundle: nil)
     }
     
-    required init?(coder: NSCoder) {
+    required init?(coder: NSCoder){
         fatalError("init(coder:) has not been implemented")
     }
     
 
-    override func viewDidLoad() {
+    override func viewDidLoad(){
         super.viewDidLoad()
         self.configureNavigationController()
         
@@ -40,7 +40,7 @@ final class AppDetailViewController: UIViewController {
     
     // MARK: - Private
 
-    private func addHeaderViewController() {
+    private func addHeaderViewController(){
         self.addChild(self.headerViewController)
         self.view.addSubview(self.headerViewController.view)
         self.headerViewController.didMove(toParent: self)
@@ -53,7 +53,7 @@ final class AppDetailViewController: UIViewController {
         ])
     }
     
-    private func addDescriptionViewController() {
+    private func addDescriptionViewController(){
         self.addChild(descriptionViewController)
         self.view.addSubview(descriptionViewController.view)
         descriptionViewController.didMove(toParent: self)
@@ -67,7 +67,7 @@ final class AppDetailViewController: UIViewController {
         ])
     }
     
-    private func addChangesViewController() {
+    private func addChangesViewController(){
         self.addChild(changesViewController)
         self.view.addSubview(changesViewController.view)
         changesViewController.didMove(toParent: self)
@@ -82,7 +82,7 @@ final class AppDetailViewController: UIViewController {
         
     }
     
-    private func configureNavigationController() {
+    private func configureNavigationController(){
         self.navigationController?.navigationBar.tintColor = UIColor.white;
         self.navigationItem.largeTitleDisplayMode = .never
     }

@@ -8,10 +8,10 @@
 
 import UIKit
 
-class AppChangesViewController: UIViewController {
+class AppChangesViewController: UIViewController{
     private let app: ITunesApp
     
-    private var appChangesView: ChangesView {
+    private var appChangesView: ChangesView{
         return self.view as! ChangesView
     }
     
@@ -20,21 +20,21 @@ class AppChangesViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
-    required init?(coder: NSCoder) {
+    required init?(coder: NSCoder){
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func loadView() {
+    override func loadView(){
         super.loadView()
         self.view = ChangesView()
     }
     
-    override func viewDidLoad() {
+    override func viewDidLoad(){
         super.viewDidLoad()
         self.fillData()
     }
     
-    private func fillData() {
+    private func fillData(){
         self.appChangesView.appVersionLabel.text = "Версия: \(app.appVersion ?? "0")"
         self.appChangesView.appVersionTextLabel.text = app.releaseNotes
     }

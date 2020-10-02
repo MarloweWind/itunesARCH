@@ -8,56 +8,92 @@
 
 import UIKit
 
-protocol SearchViewInput {
-    var searchResults: [ITunesApp] {get set}
+protocol SearchViewInput: class{
+    
+    var appsSearchResults: [ITunesApp] { get set }
+    
+    var songsSearcgResult: [ITunesSong] { get set }
+    
     func showError(error: Error)
+    
     func showNoResults()
+    
     func hideNoResults()
+    
     func throbber(show: Bool)
 }
 
-protocol SearchViewOutput {
-    func viewDidSearch(with query: String)
+protocol SearchViewOutput: class{
+    
+    func viewDidSearch(with query: String, for type: ITunesSearch.meadiType)
+    
     func viewDidSelectApp(_ app: ITunesApp)
+    
+    func viewDidSelectSong(_ song: ITunesSong)
 }
 
-class SearchPresenter {
-    
-    weak var viewInput: (UIViewController & SearchViewInput)?
+class SearchPresenter{
     
     private let searchService = ITunesSearchService()
     
-    private func requestApps(with query: String) {
-        searchService.getApps(forQuery: query) { [weak self] result in
-            guard let self = self else { return }
-            
-            self.viewInput?.throbber(show: false)
-            result.withValue { (apps) in
-                guard !apps.isEmpty else {
-                    self.viewInput?.showNoResults()
-                    return
+    var viewInput: (UIViewController & SearchViewInput)?
+    
+    let interactor: SearchInteractorInput
+    let router: SearchRouterInput
+    
+    init(interactor: SearchInteractorInput, router: SearchRouterInput) {
+        self.interactor = interactor
+        self.router = router
+    }
+}
+
+extension SearchPresenter: SearchViewOutput{
+    func viewDidSearch(with query: String, for type: ITunesSearch.meadiType) {
+        if type == .app {
+            self.interactor.requestApps(with: query) { [weak self]  results in
+                guard let self = self else { return }
+                self.viewInput?.throbber(show: false)
+                results
+                    .withValue { apps in
+                        guard !apps.isEmpty else {
+                            self.viewInput?.showNoResults()
+                            return
+                        }
+                        self.viewInput?.hideNoResults()
+                        self.viewInput?.appsSearchResults = apps
                 }
-                self.viewInput?.hideNoResults()
-                self.viewInput?.searchResults = apps
-            }.withError {
-                self.viewInput?.showError(error: $0)
+                .withError {
+                    self.viewInput?.showError(error: $0)
+                }
+                
+            }
+        } else {
+            self.interactor.requestSongs(with: query) { [weak self]  results in
+                guard let self = self else { return }
+                self.viewInput?.throbber(show: false)
+                results
+                    .withValue { songs in
+                        guard !songs.isEmpty else{
+                            self.viewInput?.showNoResults()
+                            return
+                        }
+                        self.viewInput?.hideNoResults()
+                        self.viewInput?.songsSearcgResult = songs
+                }
+                .withError{
+                    self.viewInput?.showError(error: $0)
+                }
             }
         }
     }
     
-    private func openAppDetails(with app: ITunesApp) {
-        let appDetailcVC = AppDetailViewController(app: app)
-        viewInput?.navigationController?.pushViewController(appDetailcVC, animated: true)
-    }
-}
-
-extension SearchPresenter: SearchViewOutput {
-    func viewDidSearch(with query: String) {
-        viewInput?.throbber(show: true)
-        requestApps(with: query)
+    func viewDidSelectApp(_ app: ITunesApp){
+        self.router.openAppDetails(with: app)
     }
     
-    func viewDidSelectApp(_ app: ITunesApp) {
-        openAppDetails(with: app)
+    func viewDidSelectSong(_ song: ITunesSong){
+        self.router.openSongDetail(with: song)
     }
+    
+    
 }
